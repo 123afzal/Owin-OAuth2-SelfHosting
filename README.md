@@ -7,7 +7,7 @@
 
 ## Output
 
-A cmd is open with a text "your server is running on `http://:*8080`
+A cmd is open with a text "your server is running on `http://*:8080`
 
 ## How to test
 
