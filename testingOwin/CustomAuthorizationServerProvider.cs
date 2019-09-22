@@ -26,9 +26,6 @@ namespace testingOwin
                 if (secret == "secret")
 
                 {
-
-                    // need to make the client_id available for later security checks
-
                     context.OwinContext.Set<string>("as:client_id", id);
 
                     context.Validated();
@@ -36,8 +33,6 @@ namespace testingOwin
                 }
 
             }
-            //context.Validated();
-            //return Task.FromResult(0);
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
@@ -71,95 +66,5 @@ namespace testingOwin
             context.Validated(ticket);
 
         }
-
-        //public override async Task GrantRefreshToken(OAuthGrantRefreshTokenContext context)
-
-        //{
-
-        //    var originalClient = context.Ticket.Properties.Dictionary["as:client_id"];
-
-        //    var currentClient = context.OwinContext.Get<string>("as:client_id");
-
-
-
-        //    // enforce client binding of refresh token
-
-        //    if (originalClient != currentClient)
-
-        //    {
-
-        //        context.Rejected();
-
-        //        return;
-
-        //    }
-
-
-
-        //    // chance to change authentication ticket for refresh token requests
-
-        //    var newId = new ClaimsIdentity(context.Ticket.Identity);
-
-        //    newId.AddClaim(new Claim("newClaim", "refreshToken"));
-
-
-
-        //    var newTicket = new AuthenticationTicket(newId, context.Ticket.Properties);
-
-        //    context.Validated(newTicket);
-
-        //}
-
-
-
-
-
-
-
-
-
-
-
-        //public override Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
-        //{
-        //    //context.OwinContext.Response.Headers
-        //    //    .Add(new KeyValuePair<string, string[]>("Access-Control-Allow-Origin", new[] { "*" }));
-
-        //    //var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
-        //    //var user = userManager.Find(context.UserName, context.Password);
-        //    //if (user == null)
-        //    //{
-        //    //    context.SetError("invalid_grant", "Username and password do not match.");
-        //    //    return Task.FromResult(0);
-        //    //}
-
-        //    var username = context.UserName;
-        //    var password = context.Password;
-        //    var userService = new UserService();
-        //    ClientMaster user = userService.GetUserByCredentials(username, password);
-
-        //    if (user == null)
-        //    {
-        //        if (user == null)
-        //        {
-        //            context.SetError("invalid_grant", "Username and password do not match.");
-        //            return Task.FromResult(0);
-        //        }
-        //    }
-        //    var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-        //    identity.AddClaim(new Claim(ClaimTypes.Name, user.Name));
-        //    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
-
-        //    context.Validated(identity);
-        //    return Task.FromResult(0);
-
-        //    //var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-        //    //identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
-        //    //identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
-
-        //    //context.Validated(identity);
-        //    //return Task.FromResult(0);
-
-        //}
     }
 }

@@ -12,18 +12,6 @@ namespace testingOwin
     public class SimpleRefreshTokenProvider : IAuthenticationTokenProvider
     {
         private static ConcurrentDictionary<string, AuthenticationTicket> _refreshTokens = new ConcurrentDictionary<string, AuthenticationTicket>();
-
-        //public async Task CreateAsync(AuthenticationTokenCreateContext context)
-        //{
-        //    var guid = Guid.NewGuid().ToString();
-
-
-        //    _refreshTokens.TryAdd(guid, context.Ticket);
-
-        //    // hash??
-        //    context.SetToken(guid);
-        //}
-
         public async Task CreateAsync(AuthenticationTokenCreateContext context)
         {
             var guid = Guid.NewGuid().ToString();
